@@ -19,36 +19,37 @@ mkdir -p ~/.config/nvim
 Now copy the contents inside `init.lua` then:
 ```bash
 cd ~/.config/nvim
-
+```
+```bash
 nvim init.lua
 ```
-Now pase all the contents there using `p`. Then click `escape` and use `:wq` to save and quit. Now reopen the nvim and all the required plugins will auto install. If you need to install any LSPs then use `:Mason` and select the LSPs required for your workflow.
+Now paste all the contents there using `p`. Then click `escape` and use `:wq` to save and quit. Now reopen the nvim and all the required plugins will auto-install. If you need to install any LSPs then use `:Mason` and select the LSPs required for your workflow.
 
 ## Key combos
 
 - Insert before `i`
 - Insert after `a`
 - Insert from a new line `o`
-- Select entire line `V`
+- Select the entire line `V`
 - Select char by char `v`
-- Go to defination `gd`
+- Go to definition `gd`
 - See all the implementation `gi`
 - Search within the current file `<space>/`
 - Search entire dir `<space>sf`
-- Move cursor to the end of file `G`
-- Move cursor to the start `gg`
-- Jump to end of line `$`
+- Move the cursor to the end of file `G`
+- Move the cursor to the start `gg`
+- Jump to the end of the line `$`
 - Jump to start of line `_` or `^`
 - Delete a line `dd`
 - Delete a selection `d`
-- Delete a single char `vd` [basically its a select with `v` then delete with `d`]
+- Delete a single char `vd` [basically select with `v` then delete with `d`]
 - Copy/yank a selection `y`
 - Copy/yank a line `yy`
 - Copy single char `Y`
 - Paste after `p`
 - Pase before `P`
 - Open terminal `:terminal`
-- Format using the built in LSP `:Format`
+- Format using the built-in LSP `:Format`
 - Save the current file/buffer `:w`
 - Quit nvim `:q`
 - Quit and reset changes `:q!`
