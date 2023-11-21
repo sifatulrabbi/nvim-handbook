@@ -1,5 +1,29 @@
 # Neovim Handbook
 
+## Install and setup the init.lua
+
+Linux  
+```bash
+sudo [apt/pacman] [install/-S] nvim
+```
+Macos with brew  
+```bash
+brew install nvim
+```
+
+Create a new folder in the home dir under .config folder
+```bash
+mkdir -p ~/.config/nvim
+```
+
+Now copy the contents inside `init.lua` then:
+```bash
+cd ~/.config/nvim
+
+nvim init.lua
+```
+Now pase all the contents there using `p`. Then click `escape` and use `:wq` to save and quit. Now reopen the nvim and all the required plugins will auto install. If you need to install any LSPs then use `:Mason` and select the LSPs required for your workflow.
+
 ## Key combos
 
 - Insert before `i`
