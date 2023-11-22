@@ -515,11 +515,38 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  -- gopls = {},
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  pyright = {
+    filetypes = { 'python' },
+    settings = {
+      python = {
+        formatting = {
+          provider = "black"
+        },
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true
+        }
+      }
+    },
+  },
+  pylsp = {
+    filetypes = { 'python' },
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = { enabled = false },
+          flake8 = { enabled = false },
+          yapf = { enabled = false },
+          black = { enabled = true, line_length = 80 },
+        },
+      },
+    },
+  },
 
   lua_ls = {
     Lua = {
