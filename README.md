@@ -56,3 +56,7 @@ Now paste all the contents there using `p`. Then click `escape` and use `:wq` to
 - Save and quit `:wq`
 - Move to the start of the block `(`
 - Move to the end of the block `)`
+- Split horizontally `<C-w> s`
+- Split vertically`<C-w> v`
+- Go to right window `<C-w> l`
+- Go to left window `<C-w> j`
