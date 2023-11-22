@@ -60,3 +60,4 @@ Now paste all the contents there using `p`. Then click `escape` and use `:wq` to
 - Split vertically`<C-w> v`
 - Go to right window `<C-w> l`
 - Go to left window `<C-w> j`
+- When in INSERT mode, delete a word from end-to-start `<C-w>`
