@@ -115,7 +115,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -348,7 +348,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -540,7 +540,27 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
+  -- ensure_installed = vim.tbl_keys(servers),
+  ensure_installed = {
+    "bashls",           -- Bash language server
+    "cssls",            -- CSS language server
+    "cssmodules_ls",    -- CSS Modules language server
+    "dockerls",         -- Docker language server
+    "eslint",           -- ESLint language server
+    "golangci_lint_ls", -- GolangCI-Lint language server
+    "gopls",            -- Go language server
+    "html",             -- HTML language server
+    "jsonls",           -- JSON language server
+    "lua_ls",           -- Lua language server
+    "pylsp",            -- Python language server (alternative to pyright)
+    "pyright",          -- Python language server (alternative to pylsp)
+    "tailwindcss",      -- Tailwind CSS language server
+    "tsserver",         -- TypeScript language server
+    "vuels",            -- Vue language server
+    "yamlls",           -- YAML language server
+    "volar"             -- if you're using Vue 3 and you prefer it over "vuels"
+  },
+  automatic_installation = true
 }
 
 mason_lspconfig.setup_handlers {
