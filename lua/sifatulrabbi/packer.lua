@@ -2,24 +2,26 @@ vim.cmd [[packadd packer.nvim]]
 
 return require("packer").startup(function(use)
     -- Packer can manage itself
-    use "wbthomason/packer.nvim"
+    use("wbthomason/packer.nvim")
 
     use {
         "nvim-telescope/telescope.nvim", tag = "0.1.4",
-        -- or                            , branch = "0.1.x",
+        -- or                          , branch = "0.1.x",
         requires = { { "nvim-lua/plenary.nvim" } }
     }
+
     use({
         "nvim-treesitter/nvim-treesitter-context",
         build = ":TSUpdate",
     })
+
     use("projekt0n/github-nvim-theme")
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("nvim-treesitter/playground")
     use("theprimeagen/harpoon")
     use("mbbill/undotree")
-    use("lukas-reineke/indent-blankline.nvim")
     use("tpope/vim-fugitive")
+
     use {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v1.x",
@@ -42,8 +44,10 @@ return require("packer").startup(function(use)
             { "rafamadriz/friendly-snippets" },
         }
     }
+
     use("tpope/vim-rhubarb")
     use("tpope/vim-sleuth")
+
     use({
         "folke/which-key.nvim",
         config = function()
@@ -51,10 +55,14 @@ return require("packer").startup(function(use)
             vim.o.timeoutlen = 300
         end
     })
+
     use("lewis6991/gitsigns.nvim")
     use("numToStr/Comment.nvim")
+
     use {
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons", opt = true }
     }
+
+    -- use("lukas-reineke/indent-blankline.nvim")
 end)
