@@ -12,6 +12,29 @@ lsp.ensure_installed({
   "volar", -- or "vuels" for Vue 2
 })
 
+require("mason").setup({
+  ensure_installed = {
+    "gofumpt",
+    "goimports",
+    "black",
+    "pyright",
+    "bashls",
+    "cssls",
+    "cssmodules_ls",
+    "docker_compose_language_service",
+    "dockerls",
+    "eslint",
+    "html",
+    "htmx",
+    "jsonls",
+    "nginx-language-server",
+    "tailwindcss",
+    "tsserver",
+    "yamlls",
+  },
+  auto_install = true,
+})
+
 -- Fix Undefined global "vim"
 lsp.nvim_workspace()
 
@@ -43,15 +66,15 @@ lsp.set_preferences({
 
 lsp.on_attach(function(client, bufnr)
   local function set_keymap(mode, key, action, desc)
-    vim.keymapet(mode, key, action, { desc = "", buffer = bufnr, remap = false })
+    vim.keymap.set(mode, key, action, { desc = desc, buffer = bufnr, remap = false })
   end
 
-  set_keymap("n", "K", function() vim.lsp.buf.hover() end, "Show info")
-  set_keymap("n", "<leader>f", function() vim.lsp.buf.format() end, "Format buffer")
-  set_keymap("n", "<leader>q", function() vim.diagnostic.setloclist() end, "Open diagnostic panel")
-  set_keymap("n", "<leader>vca", function() vim.lsp.buf.code_action() end, "Run code actions")
-  set_keymap("n", "<leader>vrn", function() vim.lsp.buf.rename() end, "Rename symbol")
-  set_keymap("i", "<C-h>", function() vim.lsp.buf.signature_help() end, "Show help")
+  set_keymap("n", "K", vim.lsp.buf.hover, "Show info")
+  set_keymap("n", "<leader>F", vim.lsp.buf.format, "Format buffer")
+  set_keymap("n", "<leader>q", vim.diagnostic.setloclist, "Open diagnostic panel")
+  set_keymap("n", "<leader>vca", vim.lsp.buf.code_action, "Run code actions")
+  set_keymap("n", "<leader>vrn", vim.lsp.buf.rename, "Rename symbol")
+  set_keymap("i", "<C-h>", vim.lsp.buf.signature_help, "Show help")
 end)
 lsp.setup()
 
@@ -61,17 +84,6 @@ vim.diagnostic.config({
 
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
-
-require("mason").setup({
-  ensure_installed = {
-    "gopls",
-    "gofumpt",
-    "goimports",
-    "black",
-    "pyright",
-  },
-  auto_install = true,
-})
 
 -- configure gopls for Go
 lspconfig.gopls.setup({
