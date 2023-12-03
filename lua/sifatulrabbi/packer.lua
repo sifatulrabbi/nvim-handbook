@@ -21,7 +21,6 @@ return require("packer").startup(function(use)
     use("nvim-treesitter/playground")
     use("theprimeagen/harpoon")
     use("mbbill/undotree")
-    use("tpope/vim-fugitive")
 
     use {
         "VonHeikemen/lsp-zero.nvim",
@@ -36,18 +35,14 @@ return require("packer").startup(function(use)
             { "hrsh7th/nvim-cmp" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
 
             -- Snippets
-            { "L3MON4D3/LuaSnip" },
-            { "rafamadriz/friendly-snippets" },
-        }
+            -- { "saadparwaiz1/cmp_luasnip" },
+            -- { "L3MON4D3/LuaSnip" },
+        },
     }
-
-    use("tpope/vim-rhubarb")
-    use("tpope/vim-sleuth")
 
     use({
         "folke/which-key.nvim",
@@ -57,6 +52,9 @@ return require("packer").startup(function(use)
         end
     })
 
+    use("tpope/vim-rhubarb")
+    use("tpope/vim-sleuth")
+    use("tpope/vim-fugitive")
     use("lewis6991/gitsigns.nvim")
     use("numToStr/Comment.nvim")
 

@@ -12,16 +12,16 @@ require("rose-pine").setup({
   dim_nc_background = false,
   disable_background = true,
   disable_float_background = true,
-  disable_italics = false,
+  disable_italics = true,
 })
 
 function ColorMyPencils(color)
-  -- color = color or "github_dark_dimmed"
-  color = "rose-pine"
+  color = color or "github_dark_dimmed"
   vim.cmd.colorscheme(color)
 
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-ColorMyPencils()
+ColorMyPencils("rose-pine")
+-- ColorMyPencils()

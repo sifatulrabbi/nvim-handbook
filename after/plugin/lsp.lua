@@ -6,7 +6,6 @@ lsp.ensure_installed({
   "eslint",
   "gopls",
   "pyright",
-  "pylsp",
   "html",
   "cssls",
   "volar", -- or "vuels" for Vue 2
@@ -17,7 +16,6 @@ require("mason").setup({
     "gofumpt",
     "goimports",
     "black",
-    "pyright",
     "bashls",
     "cssls",
     "cssmodules_ls",
@@ -84,10 +82,14 @@ vim.diagnostic.config({
 
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabiliites = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- configure gopls for Go
 lspconfig.gopls.setup({
   cmd = { "gopls" },
+  capabiliites = capabiliites,
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
@@ -105,6 +107,7 @@ lspconfig.gopls.setup({
 
 -- configure the pyright python lsp
 lspconfig.pyright.setup({
+  capabiliites = capabiliites,
   settings = {
     python = {
       analysis = {
@@ -118,16 +121,16 @@ lspconfig.pyright.setup({
     },
   },
 })
-lspconfig.pylsp.setup({
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = { enabled = false },
-        flake8 = { enabled = false },
-        autopep8 = { enabled = false },
-        yapf = { enabled = false },
-        black = { enabled = true },
-      },
-    },
-  },
-})
+-- lspconfig.pylsp.setup({
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = { enabled = false },
+--         flake8 = { enabled = false },
+--         autopep8 = { enabled = false },
+--         yapf = { enabled = false },
+--         black = { enabled = true },
+--       },
+--     },
+--   },
+-- })
