@@ -1,8 +1,3 @@
--- autoformat.lua
---
--- Use your language server to automatically format your code on save.
--- Adds additional commands as well to manage the behavior
-
 return {
     'neovim/nvim-lspconfig',
     config = function()
@@ -28,8 +23,26 @@ return {
             return _augroups[client.id]
         end
 
-        -- Whenever an LSP attaches to a buffer, we will run this function.
-        --
+        local function should_user_prettier()
+            local filetypes = {
+                "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "scss", "less", "json", "yaml",
+                "markdown", "html", "vue",
+            }
+            local filetype = vim.bo.filetype
+            return vim.tbl_contains(filetypes, filetype)
+        end
+
+        local function format_using_prettier()
+            local filepath = vim.fn.expand('%')
+            vim.fn.system('prettier --write ' .. vim.fn.shellescape(filepath))
+            if vim.v.shell_error ~= 0 then
+                print("Prettier failed to format the file.")
+            else
+                -- You may want to reload the buffer if changes were made
+                vim.cmd('edit!')
+            end
+        end
+
         -- See `:help LspAttach` for more information about this autocmd event.
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('kickstart-lsp-attach-format', { clear = true }),
@@ -44,12 +57,6 @@ return {
                     return
                 end
 
-                -- -- Tsserver usually works poorly. Sorry you work with bad languages
-                -- -- You can remove this line if you know what you're doing :)
-                -- if client.name == 'tsserver' then
-                --     return
-                -- end
-
                 -- Create an autocmd that will run *before* we save the buffer.
                 --  Run the formatting command for the LSP that has just attached.
                 vim.api.nvim_create_autocmd('BufWritePre', {
@@ -60,15 +67,20 @@ return {
                             return
                         end
 
-                        vim.lsp.buf.format {
-                            async = false,
-                            filter = function(c)
-                                return c.id == client.id
-                            end,
-                        }
+                        if should_user_prettier() then
+                            format_using_prettier()
+                        else
+                            vim.lsp.buf.format {
+                                async = false,
+                                filter = function(c)
+                                    return c.id == client.id
+                                end,
+                            }
+                        end
                     end,
                 })
-            end,
+            end
+            ,
         })
     end,
 }
